@@ -23,6 +23,7 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 public class AuditModel implements Serializable {
 
+    private static final long serialVersionUID = -7403837452138084141L;
 
     @Id
     @Column(name = "id", updatable = false, nullable = false, length = 36)

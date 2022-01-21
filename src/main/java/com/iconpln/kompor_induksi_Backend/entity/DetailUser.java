@@ -13,6 +13,8 @@ import java.io.Serializable;
 @Table(name = Database.TABLE_MASTER_DETAIL_USER)
 public class DetailUser extends AuditModel implements Serializable {
 
+    private static final long serialVersionUID = 4507180011006561498L;
+
     @Column(length = 30)
     private String nama;
 

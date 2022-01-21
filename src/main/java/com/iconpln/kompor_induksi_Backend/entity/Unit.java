@@ -15,6 +15,8 @@ import java.io.Serializable;
 @Table(name = Database.TABLE_MASTER_UNIT)
 public class Unit extends AuditModel implements Serializable {
 
+    private static final long serialVersionUID = -6800422070008872028L;
+
     @Column(length = 10)
     private String kode;
 
