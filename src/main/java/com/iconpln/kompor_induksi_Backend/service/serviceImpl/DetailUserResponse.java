@@ -11,8 +11,6 @@ import com.iconpln.kompor_induksi_Backend.repository.UnitRepo;
 import com.iconpln.kompor_induksi_Backend.repository.UserRepo;
 import com.iconpln.kompor_induksi_Backend.service.DetailUserService;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -20,6 +18,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
@@ -57,18 +57,18 @@ public class DetailUserResponse implements DetailUserService {
 
     @Override
     @Transactional
-    public Optional<DetailUserDto> save(@NotNull DetailUserDto dto) {
+    public Optional<DetailUserDto> save(@Nonnull DetailUserDto dto) {
         return Optional.ofNullable(assembler.toDto(saveEntity(dto)));
     }
 
     @Override
-    public Optional<DetailUserDto> getOne(@NotNull String s) {
+    public Optional<DetailUserDto> getOne(@Nonnull String s) {
         Optional<DetailUser> optional = repo.findById(s);
         return optional.map(assembler::toDto);
     }
 
     @Override
-    public Boolean delete(@NotNull String s) {
+    public Boolean delete(@Nonnull String s) {
         Optional<DetailUser> optionalDetailUser = repo.findById(s);
         if(optionalDetailUser.isPresent()){
             DetailUser detailUser = optionalDetailUser.get();
@@ -123,7 +123,7 @@ public class DetailUserResponse implements DetailUserService {
     }
 
     @Override
-    public List<DetailUserDto> findByTimPenilai(@NotNull String idUnit, @NotNull LocalDate tanggalSelesai, @NotNull String idIndikator) {
+    public List<DetailUserDto> findByTimPenilai(@Nonnull String idUnit, @Nonnull LocalDate tanggalSelesai, @Nonnull String idIndikator) {
         List<TimPenilaiDetail> timPenilaiDetailList = timPenilaiDetailRepo.findTimPenilaiDetailByTanggalIndikatorUnit(tanggalSelesai, idIndikator, idUnit);
         return timPenilaiDetailList.stream().map(TimPenilaiDetail::getPenilai).map(du -> assembler.toDto(du)).distinct().collect(Collectors.toList());
     }

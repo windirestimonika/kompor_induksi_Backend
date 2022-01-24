@@ -27,9 +27,9 @@ import java.util.function.Function;
 
 @Component
 public class JwtTokenUtil implements Serializable {
-    private static final long serialVersionUID = 7997340878020604616L;
     private static final long JWT_TOKEN_VALIDITY = 8 * 60 * 60;
     private static final long REFRESH_TOKEN_VALIDITY = 24 * 60 * 60;
+    private static final long serialVersionUID = -3801428188118335896L;
 
     @Autowired
     UserService userService;
@@ -78,7 +78,7 @@ public class JwtTokenUtil implements Serializable {
 
     public String generateToken(UserDetails userDetails){
         Map<String, Object> claims = new HashMap<>();
-        Optional<User> optionalUser = userService.findByUsername(userDetails.getUsername());
+        Optional<User> optionalUser = Optional.of(new User());//userService.findByUsername(userDetails.getUsername());
         claims.put("type", "access");
         if(optionalUser.isPresent()){
             User user = optionalUser.get();

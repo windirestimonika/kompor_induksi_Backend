@@ -1,13 +1,13 @@
 package com.iconpln.kompor_induksi_Backend.service;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import io.netty.handler.codec.http.HttpMethod;
 import org.apache.commons.lang3.StringUtils;
 import org.asynchttpclient.Param;
 import org.asynchttpclient.Request;
 import org.asynchttpclient.RequestBuilder;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,20 +21,20 @@ public class HttpClientUtil {
         return headers;
     }
 
-    public static Map<CharSequence, Iterable<Object>> authHeader(@NotNull String token, @NotNull String appSource) {
+    public static Map<CharSequence, Iterable<Object>> authHeader(@Nonnull String token, @Nonnull String appSource) {
         Map<CharSequence, Iterable<Object>> headers = defaultHeader();
         headers.put("Authorization", Collections.singleton("Bearer " + token));
         headers.put("App-Source", Collections.singleton(appSource));
         return headers;
     }
 
-    public static Map<CharSequence, Iterable<Object>> appSourceHeader(@NotNull String appSource) {
+    public static Map<CharSequence, Iterable<Object>> appSourceHeader(@Nonnull String appSource) {
         Map<CharSequence, Iterable<Object>> headers = defaultHeader();
         headers.put("App-Source", Collections.singleton(appSource));
         return headers;
     }
 
-    public static Request postRequest(@NotNull String url, @NotNull String appSource, @Nullable String json) {
+    public static Request postRequest(@Nonnull String url, @Nonnull String appSource, @Nullable String json) {
         return new RequestBuilder()
                 .setMethod(HttpMethod.POST.name())
                 .setUrl(url)
@@ -44,10 +44,10 @@ public class HttpClientUtil {
     }
 
     public static Request postRequestJwt(
-            @NotNull String url,
+            @Nonnull String url,
             @Nullable String json,
-            @NotNull String token,
-            @NotNull String appSource) {
+            @Nonnull String token,
+            @Nonnull String appSource) {
         return new RequestBuilder()
                 .setMethod(HttpMethod.POST.name())
                 .setUrl(url)
@@ -56,7 +56,7 @@ public class HttpClientUtil {
                 .build();
     }
 
-    public static Request getRequest(@NotNull String url, @Nullable List<Param> params) {
+    public static Request getRequest(@Nonnull String url, @Nullable List<Param> params) {
         return new RequestBuilder()
                 .setMethod(HttpMethod.GET.name())
                 .setUrl(url)
@@ -65,7 +65,7 @@ public class HttpClientUtil {
                 .build();
     }
 
-    public static Request getRequestAppSource(@NotNull String url, @Nullable List<Param> params, @NotNull String appSource) {
+    public static Request getRequestAppSource(@Nonnull String url, @Nullable List<Param> params, @Nonnull String appSource) {
         return new RequestBuilder()
                 .setMethod(HttpMethod.GET.name())
                 .setUrl(url)
@@ -74,7 +74,7 @@ public class HttpClientUtil {
                 .build();
     }
 
-    public static boolean isValid(@NotNull String url) {
+    public static boolean isValid(@Nonnull String url) {
         try {
             new URL(url).toURI();
             return true;
@@ -84,10 +84,10 @@ public class HttpClientUtil {
     }
 
     public Request getRequestJwt(
-            @NotNull String url,
+            @Nonnull String url,
             @Nullable List<Param> params,
-            @NotNull String token,
-            @NotNull String appSource) {
+            @Nonnull String token,
+            @Nonnull String appSource) {
         return new RequestBuilder()
                 .setMethod(HttpMethod.GET.name())
                 .setUrl(url)

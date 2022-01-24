@@ -1,14 +1,16 @@
 package com.iconpln.kompor_induksi_Backend.assembler;
 
-import org.jetbrains.annotations.NotNull;
 import org.mapstruct.MappingTarget;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
+@Component
 public interface BaseAssembler<E,D> {
-    E toEntity(@NotNull D dto);
-    D toDto(@NotNull E entity);
-    E fromDto(@NotNull D dto, @MappingTarget E entity);
-    List<E> toEntities(@NotNull List<D> dtos);
-    List<D> toDtos(@NotNull List<E> entities);
+    E toEntity(@Nonnull D dto);
+    D toDto(@Nonnull E entity);
+    E fromDto(@Nonnull D dto, @MappingTarget E entity);
+    List<E> toEntities(@Nonnull List<D> dtos);
+    List<D> toDtos(@Nonnull List<E> entities);
 }
