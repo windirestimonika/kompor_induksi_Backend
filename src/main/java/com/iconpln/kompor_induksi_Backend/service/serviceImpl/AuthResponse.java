@@ -140,4 +140,3 @@ public class AuthResponse implements AuthService {
                 .build();
     }
 }
-
