@@ -24,5 +24,5 @@ public class User extends AuditModel implements Serializable {
 
     @OneToOne
     @JoinColumn(name = Database.COLUMN_DETAIL_USER)
-    private DetailUser detailUser;
+    private DetailUserEntity detailUserEntity;
 }

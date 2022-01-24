@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = Database.TABLE_MASTER_DETAIL_USER)
-public class DetailUser extends AuditModel implements Serializable {
+public class DetailUserEntity extends AuditModel implements Serializable {
 
     private static final long serialVersionUID = 4507180011006561498L;
 
@@ -43,7 +43,7 @@ public class DetailUser extends AuditModel implements Serializable {
     @Column(length = 50)
     private String email;
 
-    @OneToOne(mappedBy = "detailUser")
+    @OneToOne(mappedBy = "detailUserEntity")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -38,7 +38,7 @@ public class DetailUser extends AuditModel implements Serializable {
     private Unit unit3;
     @Column(length = 50)
     private String email;
-    @OneToOne(mappedBy = "detailUser")
+    @OneToOne(mappedBy = "detailUserEntity")
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = Database.COLUMN_INDIKATOR)
