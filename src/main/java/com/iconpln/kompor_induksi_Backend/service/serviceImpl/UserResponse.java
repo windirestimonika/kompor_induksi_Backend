@@ -11,7 +11,7 @@ import com.iconpln.kompor_induksi_Backend.repository.UserRepo;
 import com.iconpln.kompor_induksi_Backend.security.JwtTokenUtil;
 import com.iconpln.kompor_induksi_Backend.security.JwtUserDetailsService;
 import com.iconpln.kompor_induksi_Backend.service.DetailUserService;
-import com.iconpln.kompor_induksi_Backend.service.UserAlreadyExistsException;
+import com.iconpln.kompor_induksi_Backend.exception.UserAlreadyExistsException;
 import com.iconpln.kompor_induksi_Backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
