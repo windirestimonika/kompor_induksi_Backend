@@ -128,7 +128,7 @@ public class AuthResponse implements AuthService {
                 return BaseResponse.builder()
                         .status(404)
                         .success(false)
-                        .message("User not found on Avenger")
+                        .message("UserRepo not found on Avenger")
                         .build();
             }
         }
