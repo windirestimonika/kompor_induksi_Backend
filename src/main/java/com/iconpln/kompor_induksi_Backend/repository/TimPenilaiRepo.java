@@ -6,4 +6,3 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface TimPenilaiRepo extends JpaRepository<TimPenilai, String>, JpaSpecificationExecutor<TimPenilai> {
 }
-
