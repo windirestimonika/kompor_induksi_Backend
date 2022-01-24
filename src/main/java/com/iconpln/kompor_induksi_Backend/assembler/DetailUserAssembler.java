@@ -1,13 +1,15 @@
 package com.iconpln.kompor_induksi_Backend.assembler;
 
-import com.iconpln.kompor_induksi_Backend.entity.DetailUserEntity;
+import com.iconpln.kompor_induksi_Backend.entity.DetailUser;
 import com.iconpln.kompor_induksi_Backend.model.DetailUserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.NullValueMappingStrategy;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 @Mapper(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
-public interface DetailUserAssembler extends BaseAssembler<DetailUserEntity, DetailUserDto> {
+public interface DetailUserAssembler extends BaseAssembler<DetailUser, DetailUserDto> {
     @Mapping(target = "idUnit", source = "unit.id")
     @Mapping(target = "kodeUnit", source = "unit.kode")
     @Mapping(target = "namaUnit", source = "unit.nama")
@@ -22,6 +24,6 @@ public interface DetailUserAssembler extends BaseAssembler<DetailUserEntity, Det
     @Mapping(target = "namaUnit3", source = "unit3.nama")
     @Mapping(target = "username", source = "user.username")
     @Mapping(target = "role", source = "user.role")
-    DetailUserDto toDto(DetailUserEntity detailUserEntity);
+    DetailUserDto toDto(DetailUser detailUserEntity);
 }
 

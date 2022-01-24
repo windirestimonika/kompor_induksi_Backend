@@ -14,11 +14,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.Request;
 import org.asynchttpclient.Response;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
@@ -37,7 +37,7 @@ public class AuthResponse implements AuthService {
     private String appSource;
 
     @Override
-    public BaseResponse<?> validate(@NotNull String token, String param) throws ExecutionException, InterruptedException, JsonProcessingException {
+    public BaseResponse<?> validate(@Nonnull String token, String param) throws ExecutionException, InterruptedException, JsonProcessingException {
         String validationUri = authBaseUri + "/validate";
         String localAppSource = appSource;
         if(param.equalsIgnoreCase("local")){
@@ -88,7 +88,7 @@ public class AuthResponse implements AuthService {
     }
 
     @Override
-    public BaseResponse<?> loginWithCode(@NotNull String code, String param) throws ExecutionException, InterruptedException, JsonProcessingException {
+    public BaseResponse<?> loginWithCode(@Nonnull String code, String param) throws ExecutionException, InterruptedException, JsonProcessingException {
         String exchangeUri = authBaseUri+"/exchange";
         String localAppSource = appSource;
         if(param.equalsIgnoreCase("local")){
