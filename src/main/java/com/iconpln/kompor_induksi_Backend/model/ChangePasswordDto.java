@@ -6,16 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserData implements Serializable {
-    private static final long serialVersionUID = -4852628749832491171L;
+public class ChangePasswordDto implements Serializable {
+    private static final long serialVersionUID = 1066469788486805195L;
     private String username;
-    private String email;
-    private String name;
-    private List<String> modules;
+    private String oldPassword;
+    private String newPassword;
 }

@@ -1,4 +1,4 @@
-package com.iconpln.kompor_induksi_Backend.filter;
+package com.iconpln.kompor_induksi_Backend.model.filter;
 
 import com.iconpln.kompor_induksi_Backend.security.JwtTokenUtil;
 import com.iconpln.kompor_induksi_Backend.security.JwtUserDetailsService;
