@@ -1,6 +1,6 @@
 package com.iconpln.kompor_induksi_Backend.config;
 
-import com.iconpln.kompor_induksi_Backend.filter.JwtFilter;
+import com.iconpln.kompor_induksi_Backend.model.filter.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
