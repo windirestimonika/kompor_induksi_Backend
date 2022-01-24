@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = Database.TABLE_MASTER_DETAIL_USER)
-public class DetailUserEntity extends AuditModel implements Serializable {
+public class DetailUser extends AuditModel implements Serializable {
 
     private static final long serialVersionUID = 4507180011006561498L;
 
