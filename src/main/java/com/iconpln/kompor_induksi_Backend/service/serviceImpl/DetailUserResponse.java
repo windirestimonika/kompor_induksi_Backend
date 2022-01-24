@@ -1,7 +1,7 @@
 package com.iconpln.kompor_induksi_Backend.service.serviceImpl;
 
 import com.iconpln.kompor_induksi_Backend.assembler.DetailUserAssembler;
-import com.iconpln.kompor_induksi_Backend.entity.DetailUser;
+import com.iconpln.kompor_induksi_Backend.entity.DetailUserEntity;
 import com.iconpln.kompor_induksi_Backend.entity.TimPenilaiDetail;
 import com.iconpln.kompor_induksi_Backend.entity.User;
 import com.iconpln.kompor_induksi_Backend.model.DetailUserDto;
@@ -13,6 +13,7 @@ import com.iconpln.kompor_induksi_Backend.service.DetailUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -43,14 +44,14 @@ public class DetailUserResponse implements DetailUserService {
 
     @Override
     public List<DetailUserDto> findAll(@Nullable String filter, @Nullable Sort sort) {
-        List<DetailUser> list = StringUtils.isBlank(filter) ?
+        List<DetailUserEntity> list = StringUtils.isBlank(filter) ?
                 repo.findAll(sort) : repo.findAll(toSpecification(filter), sort);
         return assembler.toDtos(list);
     }
 
     @Override
     public Page<DetailUserDto> findAll(@Nullable String filter, @Nullable Pageable pageable) {
-        Page<DetailUser> page = StringUtils.isBlank(filter) ?
+        Page<DetailUserEntity> page = StringUtils.isBlank(filter) ?
                 repo.findAll(pageable) : repo.findAll(toSpecification(filter), pageable);
         return new PageImpl<>(assembler.toDtos(page.getContent()), pageable, page.getTotalElements());
     }
@@ -63,19 +64,19 @@ public class DetailUserResponse implements DetailUserService {
 
     @Override
     public Optional<DetailUserDto> getOne(@NotNull String s) {
-        Optional<DetailUser> optional = repo.findById(s);
+        Optional<DetailUserEntity> optional = repo.findById(s);
         return optional.map(assembler::toDto);
     }
 
     @Override
     public Boolean delete(@NotNull String s) {
-        Optional<DetailUser> optionalDetailUser = repo.findById(s);
+        Optional<DetailUserEntity> optionalDetailUser = repo.findById(s);
         if(optionalDetailUser.isPresent()){
-            DetailUser detailUser = optionalDetailUser.get();
-            detailUser.setIsActive(false);
-            detailUser.setIsDeleted(true);
-            repo.save(detailUser);
-            User user = detailUser.getUser();
+            DetailUserEntity detailUserEntity = optionalDetailUser.get();
+            detailUserEntity.setIsActive(false);
+            detailUserEntity.setIsDeleted(true);
+            repo.save(detailUserEntity);
+            User user = detailUserEntity.getUser();
             user.setIsDeleted(true);
             user.setIsActive(false);
             userRepo.save(user);
@@ -87,39 +88,39 @@ public class DetailUserResponse implements DetailUserService {
 
     @Override
     @Transactional
-    public DetailUser saveEntity(DetailUserDto dto) {
-        DetailUser detailUser = assembler.toEntity(dto);
+    public DetailUserEntity saveEntity(DetailUserDto dto) {
+        DetailUserEntity detailUserEntity = assembler.toEntity(dto);
         if(dto.getId()!=null){
-            detailUser = repo.getOne(dto.getId());
-            assembler.fromDto(dto, detailUser);
+            detailUserEntity = repo.getOne(dto.getId());
+            assembler.fromDto(dto, detailUserEntity);
             if(dto.getRole()!=null){
-                User user = detailUser.getUser();
+                User user = detailUserEntity.getUser();
                 user.setRole(dto.getRole());
                 userRepo.save(user);
             }
         }
         if(dto.getIdUnit()!=null){
-            detailUser.setUnit(unitRepo.getOne(dto.getIdUnit()));
+            detailUserEntity.setUnit(unitRepo.getOne(dto.getIdUnit()));
         }
         if(dto.getIdUnit1()!=null){
-            detailUser.setUnit1(unitRepo.getOne(dto.getIdUnit1()));
-            detailUser.setUnit(detailUser.getUnit1());
+            detailUserEntity.setUnit1(unitRepo.getOne(dto.getIdUnit1()));
+            detailUserEntity.setUnit(detailUserEntity.getUnit1());
         }
         if(dto.getIdUnit2()!=null){
-            detailUser.setUnit2(unitRepo.getOne(dto.getIdUnit2()));
-            detailUser.setUnit(detailUser.getUnit2());
+            detailUserEntity.setUnit2(unitRepo.getOne(dto.getIdUnit2()));
+            detailUserEntity.setUnit(detailUserEntity.getUnit2());
         }
         if(dto.getIdUnit3()!=null){
-            detailUser.setUnit3(unitRepo.getOne(dto.getIdUnit3()));
-            detailUser.setUnit(detailUser.getUnit3());
+            detailUserEntity.setUnit3(unitRepo.getOne(dto.getIdUnit3()));
+            detailUserEntity.setUnit(detailUserEntity.getUnit3());
         }
-        detailUser = repo.save(detailUser);
+        detailUserEntity = repo.save(detailUserEntity);
         if(dto.getId()!=null && dto.getIsActive()!=null){
-            User user = detailUser.getUser();
+            User user = detailUserEntity.getUser();
             user.setIsActive(dto.getIsActive());
             userRepo.save(user);
         }
-        return detailUser;
+        return detailUserEntity;
     }
 
     @Override

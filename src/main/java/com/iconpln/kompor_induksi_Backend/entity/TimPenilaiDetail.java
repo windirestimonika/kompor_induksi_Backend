@@ -24,7 +24,7 @@ public class TimPenilaiDetail extends AuditModel implements Serializable {
     private Indikator indikator;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = Database.COLUMN_PENILAI)
-    private DetailUser penilai;
+    private DetailUserEntity penilai;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = Database.COLUMN_SK)
     private SuratKeputusan suratKeputusan;

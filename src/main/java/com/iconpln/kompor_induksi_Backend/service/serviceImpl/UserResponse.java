@@ -61,7 +61,7 @@ public class UserResponse implements UserService {
         User user = assembler.toEntity(dto);
         user.setPassword(encryptPassword(dto.getPassword()));
         if (dto.getDetailUser() != null) {
-            user.setDetailUser(detailUserService.saveEntity(dto.getDetailUser()));
+            user.setDetailUserEntity(detailUserService.saveEntity(dto.getDetailUser()));
         }
         repo.save(user);
     }
@@ -90,7 +90,7 @@ public class UserResponse implements UserService {
     public String getFullNameByUsername(String username) {
         Optional<User> optional = findByUsername(username);
         if (optional.isPresent()) {
-            return optional.get().getDetailUser().getNama();
+            return optional.get().getDetailUserEntity().getNama();
         } else {
             return "";
         }
