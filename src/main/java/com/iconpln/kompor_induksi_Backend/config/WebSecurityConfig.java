@@ -1,5 +1,6 @@
 package com.iconpln.kompor_induksi_Backend.config;
 
+import com.iconpln.kompor_induksi_Backend.filter.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -32,17 +34,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/auth/**"
     };
 
-//    @Autowired
-//    private JwtAuthEntryPoint authEntryPoint;
+    @Autowired
+    private JwtAuthEntryPoint authEntryPoint;
 
     @Autowired
     private UserDetailsService userDetailsService;
 
-//    @Autowired
-//    private JwtFilter requestFilter;
+    @Autowired
+    private JwtFilter requestFilter;
 
-//    @Autowired
-//    private RestAccessDeniedHandler restAccessDeniedHandler;
+    @Autowired
+    private RestAccessDeniedHandler restAccessDeniedHandler;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -55,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         web.ignoring().mvcMatchers(AUTH_WHITELIST);
     }
 
@@ -72,14 +74,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/integrasi/**").permitAll()
                 .antMatchers("/**").authenticated()
                 .and().httpBasic().and()
-//                .exceptionHandling().authenticationEntryPoint(authEntryPoint)
-//                .accessDeniedHandler(restAccessDeniedHandler)
-//                .and()
+                .exceptionHandling().authenticationEntryPoint(authEntryPoint)
+                .accessDeniedHandler(restAccessDeniedHandler)
+                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().headers().frameOptions().disable();
 
-//        httpSecurity.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
