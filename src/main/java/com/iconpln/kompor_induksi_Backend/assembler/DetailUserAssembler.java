@@ -5,7 +5,9 @@ import com.iconpln.kompor_induksi_Backend.model.DetailUserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.NullValueMappingStrategy;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 @Mapper(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 public interface DetailUserAssembler extends BaseAssembler<DetailUserEntity, DetailUserDto> {
     @Mapping(target = "idUnit", source = "unit.id")

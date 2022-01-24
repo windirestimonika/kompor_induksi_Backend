@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +32,7 @@ import static io.github.perplexhub.rsql.RSQLJPASupport.toSpecification;
 
 @Service
 public class DetailUserResponse implements DetailUserService {
+
     @Autowired
     DetailUserRepo repo;
     @Autowired
