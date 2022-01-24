@@ -1,6 +1,6 @@
 package com.iconpln.kompor_induksi_Backend.security;
 
-import com.iconpln.kompor_induksi_Backend.entity.DetailUser;
+import com.iconpln.kompor_induksi_Backend.entity.DetailUserEntity;
 import com.iconpln.kompor_induksi_Backend.entity.User;
 import com.iconpln.kompor_induksi_Backend.exception.ExpiredTooLongException;
 import com.iconpln.kompor_induksi_Backend.model.JwtDto;
@@ -82,10 +82,10 @@ public class JwtTokenUtil implements Serializable {
         claims.put("type", "access");
         if(optionalUser.isPresent()){
             User user = optionalUser.get();
-            DetailUser detailUser = user.getDetailUser();
-            claims.put("fullname", detailUser.getNama());
-            claims.put("nip", detailUser.getNip());
-            claims.put("id_detail_user", detailUser.getId());
+            DetailUserEntity detailUserEntity = user.getDetailUserEntity();
+            claims.put("fullname", detailUserEntity.getNama());
+            claims.put("nip", detailUserEntity.getNip());
+            claims.put("id_detail_user", detailUserEntity.getId());
             claims.put("id_user", user.getId());
         }
         return doGenerateToken(claims, userDetails.getUsername(), JWT_TOKEN_VALIDITY);
