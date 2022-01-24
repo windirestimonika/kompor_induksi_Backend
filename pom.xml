@@ -110,7 +110,13 @@
 			<artifactId>mapstruct</artifactId>
 			<version>1.4.2.Final</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/io.github.perplexhub/rsql -->
+		<dependency>
+			<groupId>io.github.perplexhub</groupId>
+			<artifactId>rsql-jpa-spring-boot-starter</artifactId>
+			<version>5.0.18</version>
+			<type>pom</type>
+		</dependency>
 
 
 	</dependencies>

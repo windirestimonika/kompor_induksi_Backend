@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static io.github.perplexhub.rsql.RSQLJPASupport.toSpecification;
+
 @Service
 public class DetailUserResponse implements DetailUserService {
     @Autowired
