@@ -1,4 +1,4 @@
-package com.iconpln.kompor_induksi_Backend.service;
+package com.iconpln.kompor_induksi_Backend.service.serviceImpl;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

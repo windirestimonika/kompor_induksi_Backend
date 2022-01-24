@@ -8,7 +8,6 @@ import com.iconpln.kompor_induksi_Backend.entity.User;
 import com.iconpln.kompor_induksi_Backend.model.JwtDto;
 import com.iconpln.kompor_induksi_Backend.model.UserData;
 import com.iconpln.kompor_induksi_Backend.service.AuthService;
-import com.iconpln.kompor_induksi_Backend.service.BaseResponse;
 import com.iconpln.kompor_induksi_Backend.service.HttpClientUtil;
 import com.iconpln.kompor_induksi_Backend.service.UserService;
 import org.apache.commons.lang3.StringUtils;

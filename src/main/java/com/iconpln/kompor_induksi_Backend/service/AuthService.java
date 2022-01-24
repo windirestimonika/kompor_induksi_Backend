@@ -1,6 +1,7 @@
 package com.iconpln.kompor_induksi_Backend.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.iconpln.kompor_induksi_Backend.service.serviceImpl.BaseResponse;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ExecutionException;
