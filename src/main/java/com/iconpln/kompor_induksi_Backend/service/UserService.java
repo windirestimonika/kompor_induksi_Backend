@@ -1,6 +1,7 @@
 package com.iconpln.kompor_induksi_Backend.service;
 
 import com.iconpln.kompor_induksi_Backend.entity.User;
+import com.iconpln.kompor_induksi_Backend.model.ChangePasswordDto;
 import com.iconpln.kompor_induksi_Backend.model.JwtDto;
 import com.iconpln.kompor_induksi_Backend.model.JwtRequest;
 import com.iconpln.kompor_induksi_Backend.model.UserDto;
